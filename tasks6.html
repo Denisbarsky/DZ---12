@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 6</h1>
+    <p>
+      Дано масив імен. Застосовуючи відповідне сортування та бінарний пошук
+      визначити, чи є у масиві ім’я довжиною 5 символів і під <br />
+      яким індексом.
+    </p>
+    <script>
+      // створюємо массив імен
+      const names = ["Anna", "Bob", "Olga", "Peter", "Sarah", "Diana"];
+
+      // сортуємо масив в алфавітному порядку
+      names.sort();
+
+      // використовуємо бінарний пошук для знаходження імені довжиною 5 символів
+      let leftIndex = 0;
+      let rightIndex = names.length - 1;
+      let middleIndex;
+      let foundIndex = -1;
+
+      while (leftIndex <= rightIndex) {
+        middleIndex = Math.floor((leftIndex + rightIndex) / 2);
+        if (names[middleIndex].length === 5) {
+          foundIndex = middleIndex;
+          break;
+        } else if (names[middleIndex].length < 5) {
+          leftIndex = middleIndex + 1;
+        } else {
+          rightIndex = middleIndex - 1;
+        }
+      }
+
+      if (foundIndex !== -1) {
+        document.write(
+          "Ім'я довжиною 5 символів є в масиві і під індексом",
+          foundIndex
+        );
+      } else {
+        document.write("Імені довжиною 5 символів немає в масиві");
+      }
+    </script>
+  </body>
+</html>

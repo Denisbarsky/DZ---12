@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 4</h1>
+    <p>
+      Для розглянутих методів сортування спробувати вивести етапи сортування
+      шляхом виведення відповідних <br />
+      таблиць за зразком
+    </p>
+    <script>
+      let randomArr = [3, 1, 4, 6, 2, 5];
+      function getQuantityOfChanged(randomArr) {
+        let count = 0;
+        let changed;
+        do {
+          changed = false;
+          for (let i = 1; i < randomArr.length; i++) {
+            if (randomArr[i - 1] > randomArr[i]) {
+              let tmp = randomArr[i - 1];
+              randomArr[i - 1] = randomArr[i];
+              randomArr[i] = tmp;
+              document.write(`${randomArr}<br>`);
+              changed = true;
+            }
+          }
+        } while (changed);
+      }
+
+      const quantityChange = getQuantityOfChanged(randomArr);
+
+      let randomArr2 = [7, 5, 8, 6, 9, 4];
+      function getQuantityChanges(randomArr2) {
+        let leftIndex = 0;
+        let rightIndex = randomArr2.length - 1;
+
+        while (leftIndex < rightIndex) {
+          for (let idx = leftIndex; idx < rightIndex; idx++) {
+            if (randomArr2[idx] > randomArr2[idx + 1]) {
+              let tmp = randomArr2[idx];
+              randomArr2[idx] = randomArr2[idx + 1];
+              randomArr2[idx + 1] = tmp;
+            }
+          }
+          rightIndex--;
+          for (let idx = rightIndex; idx > leftIndex; idx--) {
+            if (randomArr2[idx] < randomArr2[idx - 1]) {
+              let tmp = randomArr2[idx];
+              randomArr2[idx] = randomArr2[idx - 1];
+              randomArr2[idx - 1] = tmp;
+            }
+          }
+          leftIndex++;
+          document.write(`${randomArr2}<br>`);
+        }
+      }
+      const quantityChanges = getQuantityChanges(randomArr2);
+      let randomArr3 = [11, 15, 18, 16, 19, 14];
+      function getChangedAmount(randomArr3) {
+        let key, i;
+        for (let k = 1; k < randomArr3.length; k++) {
+          key = randomArr3[k];
+          i = k - 1;
+          while (i >= 0 && randomArr3[i] > key) {
+            randomArr3[i + 1] = randomArr3[i];
+            i = i - 1;
+          }
+          randomArr3[i + 1] = key;
+          document.write(`${randomArr3}<br>`);
+        }
+      }
+      const changeAmount = getChangedAmount(randomArr3);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 2</h1>
+    <p>
+      Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під
+      час сортування змішуванням.
+    </p>
+    <script>
+      // Функція для генерації масиву випадкових чисел
+      function generateRandomArray(length, min, max) {
+        const arr = [];
+        for (let i = 0; i < length; i++) {
+          arr.push(Math.floor(Math.random() * (max - min + 1)) + min);
+        }
+        return arr;
+      }
+
+      // Функція для сортування масиву злиттям та підрахунку кількості обмінів
+      function mergeSortWithSwapsCount(arr) {
+        let swaps = 0;
+        const n = arr.length;
+        if (n < 2) {
+          return swaps;
+        }
+        const mid = Math.floor(n / 2);
+        const left = arr.slice(0, mid);
+        const right = arr.slice(mid);
+        swaps += mergeSortWithSwapsCount(left);
+        swaps += mergeSortWithSwapsCount(right);
+        let i = 0,
+          j = 0,
+          k = 0;
+        while (i < left.length && j < right.length) {
+          if (left[i] <= right[j]) {
+            arr[k] = left[i];
+            i++;
+          } else {
+            arr[k] = right[j];
+            j++;
+            swaps += mid - i;
+          }
+          k++;
+        }
+        while (i < left.length) {
+          arr[k] = left[i];
+          i++;
+          k++;
+        }
+        while (j < right.length) {
+          arr[k] = right[j];
+          j++;
+          k++;
+        }
+        return swaps;
+      }
+
+      // Генеруємо масив випадкових чисел
+      const arr = generateRandomArray(30, 1, 100);
+
+      // Виводимо масив на екран
+      console.log("Масив:", arr);
+
+      // Сортуємо масив та виводимо кількість обмінів, які були виконані
+      const swaps = mergeSortWithSwapsCount(arr);
+      console.log("Кількість обмінів:", swaps);
+    </script>
+  </body>
+</html>

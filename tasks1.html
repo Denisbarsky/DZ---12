@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Задача 1</h1>
+    <p>
+      Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під
+      час сортування бульбашкою
+    </p>
+    <script>
+      // Функція для генерації масиву випадкових чисел
+      function generateRandomArray(length, min, max) {
+        const arr = [];
+        for (let i = 0; i < length; i++) {
+          arr.push(Math.floor(Math.random() * (max - min + 1)) + min);
+        }
+        return arr;
+      }
+
+      // Функція для сортування масиву бульбашкою та підрахунку кількості обмінів
+      function bubbleSortWithSwapsCount(arr) {
+        let swaps = 0;
+        for (let i = 0; i < arr.length - 1; i++) {
+          for (let j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+              // Обмін елементів
+              const temp = arr[j];
+              arr[j] = arr[j + 1];
+              arr[j + 1] = temp;
+              swaps++;
+            }
+          }
+        }
+        return swaps;
+      }
+
+      // Генеруємо масив випадкових чисел та виводимо його на екран
+      const arr = generateRandomArray(30, 0, 100);
+      document.write(`Масив: ${arr}`);
+
+      // Сортуємо масив та виводимо кількість обмінів, які були виконані
+      const swaps = bubbleSortWithSwapsCount(arr);
+      document.write(`Кількість обмінів: ${swaps}`);
+    </script>
+  </body>
+</html>
